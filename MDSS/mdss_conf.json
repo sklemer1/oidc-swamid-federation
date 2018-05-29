@@ -1,0 +1,21 @@
+{
+    "self_signer": {
+        "private_path": "private/mdss.json",
+        "key_defs": [
+            {
+                "type": "EC",
+                "crv": "P-256",
+                "use": [
+                    "sig"
+                ]
+            }
+        ],
+        "public_path": "public/mdss.json"
+    },
+    "sms_dir": "sms",
+    "fo_bundle": {
+        "dir": "../fo_bundle"
+    },
+    "context": "",
+    "entity_id": "https://mdss.sunet.se"
+}

@@ -1,0 +1,8 @@
+{
+    "self_signer": {
+        "private_path": "../private/https%3A%2F%2Fswamid.sunet.se",
+        "public_path": "../public/https%3A%2F%2Fswamid.sunet.se"
+    },
+    "sms_dir": "",
+    "entity_id": "https://swamid.sunet.se"
+}

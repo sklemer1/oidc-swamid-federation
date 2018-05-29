@@ -1,0 +1,8 @@
+{
+    "self_signer": {
+        "private_path": "../private/https%3A%2F%2Fedugain.org",
+        "public_path": "../public/https%3A%2F%2Fedugain.org"
+    },
+    "sms_dir": "",
+    "entity_id": "https://edugain.org"
+}

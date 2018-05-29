@@ -1,0 +1,10 @@
+{
+    "discovery": {
+        "https://edugain.org": {"federation_usage": "discovery"},
+        "https://swamid.sunet.se": {"federation_usage": "discovery"}
+    },
+    "response": {
+        "https://edugain.org": {"federation_usage": "response"},
+        "https://swamid.sunet.se": {"federation_usage": "response"}
+    }
+}

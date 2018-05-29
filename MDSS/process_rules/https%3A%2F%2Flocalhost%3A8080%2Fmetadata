@@ -1,0 +1,6 @@
+{
+    "registration": {
+        "https://edugain.org": {"federation_usage": "registration"},
+        "https://swamid.sunet.se": {"federation_usage": "registration"}
+    }
+}
