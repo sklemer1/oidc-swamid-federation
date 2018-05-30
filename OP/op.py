@@ -4,7 +4,7 @@ import cherrypy
 
 from cryptojwt import as_bytes
 
-from fedoidc import MetadataStatement
+from fedoidcmsg import MetadataStatement
 
 from oidcop import cherryp
 
