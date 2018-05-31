@@ -34,6 +34,7 @@ Using pip you must install:
  - oidcrp
  - fedoidcendpoint
  - fedoidcrp
+ - atomicwrites
  
 $ pip install X
 
