@@ -17,9 +17,9 @@ config = importlib.import_module('conf')
 sys.path.pop(0)
 
 kj = init_key_jar(
-    **config.CONFIG['provider']['server_info']['federation']['self_signer'])
+    **config.CONFIG['server_info']['federation']['self_signer'])
 
-iss = config.CONFIG['provider']['server_info']['issuer']
+iss = config.CONFIG['server_info']['issuer']
 ent_id = quote_plus(iss)
 
 enrolement_info = {

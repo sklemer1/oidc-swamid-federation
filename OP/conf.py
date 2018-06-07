@@ -33,109 +33,111 @@ CAPABILITIES = {
     "claims_parameter_supported": True,
     "request_parameter_supported": True,
     "request_uri_parameter_supported": True,
-}
+    }
 
 CONFIG = {
-    'provider': {
+    'server_info': {
+        "issuer": "https://127.0.0.1:8100",
+        "password": "mycket hemligt",
+        "token_expires_in": 600,
+        "grant_expires_in": 300,
+        "refresh_token_expires_in": 86400,
+        "verify_ssl": False,
+        "capabilities": CAPABILITIES,
+        'template_dir': 'templates',
         'jwks': {
             'private_path': 'private/jwks.json',
             'key_defs': KEYDEFS,
             'public_path': 'public/jwks.json'
-        },
-        'server_info': {
-            "issuer": "https://127.0.0.1:8100",
-            "password": "mycket hemligt",
-            "token_expires_in": 600,
-            "grant_expires_in": 300,
-            "refresh_token_expires_in": 86400,
-            "verify_ssl": False,
-            "capabilities": CAPABILITIES,
-            'template_dir': 'templates',
-            "jwks": {
-                'url_path': '{}/public/jwks.json',
-                'local_path': 'public/jwks.json',
-                'private_path': 'private/jwks.json'
             },
-            'endpoint': {
-                'webfinger': {
-                    'path': '{}/.well-known/webfinger',
-                    'class': Discovery,
-                    'kwargs': {'client_authn_method': None}
+        'endpoint': {
+            'webfinger': {
+                'path': '{}/.well-known/webfinger',
+                'class': Discovery,
+                'kwargs': {'client_authn_method': None}
                 },
-                'provider_info': {
-                    'path': '{}/.well-known/openid-configuration',
-                    'class': provider_config.ProviderConfiguration,
-                    'kwargs': {'client_authn_method': None}
+            'provider_info': {
+                'path': '{}/.well-known/openid-configuration',
+                'class': provider_config.ProviderConfiguration,
+                'kwargs': {'client_authn_method': None}
                 },
-                'registration': {
-                    'path': '{}/registration',
-                    'class': registration.Registration,
-                    'kwargs': {'client_authn_method': None}
+            'registration': {
+                'path': '{}/registration',
+                'class': registration.Registration,
+                'kwargs': {'client_authn_method': None}
                 },
-                'authorization': {
-                    'path': '{}/authorization',
-                    'class': Authorization,
-                    'kwargs': {'client_authn_method': None}
+            'authorization': {
+                'path': '{}/authorization',
+                'class': Authorization,
+                'kwargs': {'client_authn_method': None}
                 },
-                'token': {
-                    'path': '{}/token',
-                    'class': AccessToken,
-                    'kwargs': {}
+            'token': {
+                'path': '{}/token',
+                'class': AccessToken,
+                'kwargs': {}
                 },
-                'userinfo': {
-                    'path': '{}/userinfo',
-                    'class': UserInfo,
+            'userinfo': {
+                'path': '{}/userinfo',
+                'class': UserInfo,
                 }
             },
-            'userinfo': {
-                'class': user_info.UserInfo,
-                'kwargs': {'db_file': 'users.json'}
+        'userinfo': {
+            'class': user_info.UserInfo,
+            'kwargs': {'db_file': 'users.json'}
             },
-            'authentication': [
-                {
-                    'acr': INTERNETPROTOCOLPASSWORD,
-                    'name': 'UserPassJinja2',
-                    'kwargs': {
-                        'template': 'user_pass.jinja2',
-                        'db': {
-                            'class': JSONDictDB,
-                            'kwargs':
-                                {'json_path': 'passwd.json'}
+        'authentication': [
+            {
+                'acr': INTERNETPROTOCOLPASSWORD,
+                'name': 'UserPassJinja2',
+                'kwargs': {
+                    'template': 'user_pass.jinja2',
+                    'db': {
+                        'class': JSONDictDB,
+                        'kwargs':
+                            {'json_path': 'passwd.json'}
                         },
-                        'page_header': "Testing log in",
-                        'submit_btn': "Get me in!",
-                        'user_label': "Nickname",
-                        'passwd_label': "Secret sauce"
+                    'page_header': "Testing log in",
+                    'submit_btn': "Get me in!",
+                    'user_label': "Nickname",
+                    'passwd_label': "Secret sauce"
                     }
                 },
-                {
-                    'acr': 'anon',
-                    'name': 'NoAuthn',
-                    'kwargs': {'user': 'diana'}
+            {
+                'acr': 'anon',
+                'name': 'NoAuthn',
+                'kwargs': {'user': 'diana'}
                 }
             ],
-            'federation': {
-                'self_signer': {
-                    'private_path': 'private/sign.json',
-                    'key_defs': FED_KEYDEF,
-                    'public_path': 'public/sign.json'
+        'cookie_dealer': {
+            'symkey': 'ghsNKDDLshZTPn974nOsIGhedULrsqnsGoBFBLwUKuJhE2ch',
+            'cookie': {
+                'name': 'oidc_op',
+                'domain': "127.0.0.1",
+                'path': '/',
+                'max_age': 3600
+                }
+            },
+        'federation': {
+            'self_signer': {
+                'private_path': 'private/sign.json',
+                'key_defs': FED_KEYDEF,
+                'public_path': 'public/sign.json'
                 },
-                'mdss_endpoint': 'https://localhost:8089',
-                'mdss_owner': 'https://mdss.sunet.se',
-                'mdss_keys': 'mdss.jwks',
-                'fo_bundle': {
-                    'dir': '../fo_bundle',
+            'mdss_endpoint': 'https://localhost:8089',
+            'mdss_owner': 'https://mdss.sunet.se',
+            'mdss_keys': 'mdss.jwks',
+            'fo_bundle': {
+                'dir': '../fo_bundle',
                 },
-                'context': 'dynamic',
-                'fo_priority': ['https://edugain.org',
-                                'https://swamid.sunet.se']
+            'context': 'dynamic',
+            'fo_priority': ['https://edugain.org',
+                            'https://swamid.sunet.se']
             }
-        }
-    },
+        },
     'webserver': {
         'cert': 'certs/cert.pem',
         'key': 'certs/key.pem',
         'cert_chain': '',
         'port': 8100,
+        }
     }
-}

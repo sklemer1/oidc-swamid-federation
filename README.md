@@ -84,6 +84,10 @@ metadata statements can be used::
 - Client registration               (registration)
 - Client registration response      (response)
 
+
+    $ cd MDSS
+    $ ./create_sign_seq.py
+
 Now that basic FO setup is done so let's bring in the entities. 
 
 ### Enrollment
