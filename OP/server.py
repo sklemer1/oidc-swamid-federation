@@ -7,7 +7,7 @@ import sys
 from urllib.parse import urlparse
 
 import requests
-from oidcmsg.key_jar import init_key_jar
+from cryptojwt.key_jar import init_key_jar
 
 from fedoidcendpoint.endpoint_context import EndpointContext
 from oidcop.cookie import CookieDealer
@@ -81,7 +81,7 @@ if __name__ == '__main__':
     _server_info_config = config.CONFIG['server_info']
     _jwks_config = _server_info_config['jwks']
 
-    _kj = init_key_jar(iss=_server_info_config['issuer'], **_jwks_config)
+    _kj = init_key_jar(owner=_server_info_config['issuer'], **_jwks_config)
 
     if args.insecure:
         verify_ssl = False
@@ -95,6 +95,7 @@ if __name__ == '__main__':
                                        verify_ssl=verify_ssl,
                                        cookie_dealer=cookie_dealer)
 
+
     for endp in endpoint_context.endpoint.values():
         p = urlparse(endp.endpoint_path)
         _vpath = p.path.split('/')
@@ -106,6 +107,7 @@ if __name__ == '__main__':
     cherrypy.tree.mount(
         OpenIDProvider(config, endpoint_context),
         '/', provider_config)
+
 
     _webserver_config = config.CONFIG['webserver']
 

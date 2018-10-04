@@ -7,9 +7,9 @@ from urllib.parse import quote_plus
 from urllib.parse import unquote_plus
 
 import cherrypy
-from cryptojwt import as_bytes
-from oidcmsg.jwt import JWT
-from oidcmsg.key_jar import init_key_jar
+from cryptojwt.utils import as_bytes
+from cryptojwt.jwt import JWT
+from cryptojwt.key_jar import init_key_jar
 
 logger = logging.getLogger(__name__)
 

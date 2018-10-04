@@ -5,7 +5,7 @@ import os
 import sys
 from urllib.parse import quote_plus
 
-from oidcmsg.key_jar import init_key_jar
+from cryptojwt.key_jar import init_key_jar
 
 
 for _dir in ['public', 'private']:

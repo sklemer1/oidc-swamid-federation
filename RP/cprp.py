@@ -7,7 +7,7 @@ from html import entities as htmlentitydefs
 from urllib.parse import parse_qs
 
 import cherrypy
-from cryptojwt import as_bytes
+from cryptojwt.utils import as_bytes
 from fedoidcmsg import MetadataStatement
 from oidcmsg.oauth2 import is_error_message
 

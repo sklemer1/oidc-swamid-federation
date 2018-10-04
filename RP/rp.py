@@ -9,7 +9,7 @@ import requests
 from fedoidcmsg.entity import make_federation_entity
 from fedoidcrp import oidc
 from fedoidcservice.service import factory
-from oidcmsg.key_jar import init_key_jar
+from cryptojwt.key_jar import init_key_jar
 from oidcrp import RPHandler
 
 logger = logging.getLogger("")

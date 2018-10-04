@@ -31,6 +31,8 @@ for _cnf in ['swamid_conf.json', 'edugain_conf.json']:
 SWAMID = FEDENT['https://swamid.sunet.se']
 EDUGAIN = FEDENT['https://edugain.org']
 
+
+
 for seq in [[fe.iss, SWAMID.iss, EDUGAIN.iss], [fe.iss, SWAMID.iss]]:
     for ctx in ['registration', 'discovery', 'response']:
         try:

@@ -3,8 +3,8 @@ import json
 import os
 
 import requests
-from oidcmsg.jwt import JWT
-from oidcmsg.key_jar import KeyJar
+from cryptojwt.jwt import JWT
+from cryptojwt.key_jar import KeyJar
 from oidcmsg.oidc import JsonWebToken
 
 EDIR = 'entities'
@@ -40,5 +40,5 @@ for _name in os.listdir(EDIR):
             pass
 
         fp = open('{}/{}'.format(EM, _name), 'w')
-        fp.write(metadata_statement.to_json())
+        fp.write(json.dumps(metadata_statement))
         fp.close()

@@ -2,7 +2,7 @@ import logging
 
 import cherrypy
 
-from cryptojwt import as_bytes
+from cryptojwt.utils import as_bytes
 
 from fedoidcmsg import MetadataStatement
 

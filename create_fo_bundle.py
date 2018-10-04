@@ -5,7 +5,7 @@ from urllib.parse import unquote_plus
 
 from fedoidcmsg.bundle import FSJWKSBundle
 from fedoidcmsg.test_utils import create_federation_entities
-from oidcmsg.key_jar import KeyJar
+from cryptojwt.key_jar import KeyJar
 
 
 # make sure the necessary directories are there
