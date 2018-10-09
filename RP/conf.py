@@ -42,9 +42,9 @@ client_config = {
     },
     'federation': {
         'self_signer': {
-            'private_path': 'private/{}.json',
+            'private_path': 'private/sign.json',
             'key_defs': FED_KEYDEF,
-            'public_path': 'public/{}.json'
+            'public_path': 'public/sign.json'
         },
         'mdss_endpoint': 'https://localhost:8089',
         'mdss_owner': 'https://mdss.sunet.se',
