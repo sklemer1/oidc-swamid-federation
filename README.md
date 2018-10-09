@@ -25,30 +25,79 @@ included in requests and/or responses.
 
 ## Installation
 
-You will need pip to get everything installed.
+You will need pip to get everything installed. Best you do this in a virtenv.
 
 If you don’t have pip, this will help you with that: https://pip.pypa.io/en/stable/installing/
 
-Using pip you must install:
- - oidcop
- - oidcrp
- - fedoidcendpoint
- - fedoidcrp
- - atomicwrites
- 
-$ pip install X
+Using pip you do:
 
-should do it. Where X is one of the 4 packages listed above.
+``` bash
+virtualenv -p python3 foobar
+pip install git+https://github.com/openid/JWTConnect-Python-CryptoJWT.git@1eff9e5
+pip install git+https://github.com/openid/JWTConnect-Python-OidcMsg.git@2c6bddc
+pip install git+https://github.com/openid/JWTConnect-Python-OidcService.git@6bb00d6
+pip install git+https://github.com/openid/JWTConnect-Python-OidcRP.git@85d09e4
+pip install git+https://github.com/IdentityPython/oidcendpoint.git@37d107c
+pip install git+https://github.com/rohe/oidc-op.git@71d293f
+pip install git+https://github.com/IdentityPython/fedoidcmsg.git@d30107b
+pip install git+https://github.com/IdentityPython/fedoidcservice.git@41f9fa6
+pip install git+https://github.com/IdentityPython/fedoidcrp.git@700e443
+pip install git+https://github.com/rohe/fed-oidc-endpoint.git@0c572b7
+```
+ 
+(if you feel adventurous you may omit the specific git revision "@FOOBAR")
+
 !! You MUST get all of them !!
 
-Once you have the 4 packages you can get the Swamid mini fed setup.
-   
-$ git clone https://github.com/rohe/oidc-swamid-federation.git
-$ cd oidc-swamid-federation
+Once you have these packages you can get the Swamid mini fed setup.
 
-and read README.md 
-But then you are already doing that so just keep on reading.
+``` bash
+git clone https://github.com/sklemer1/oidc-swamid-federation.git
+```
+
 The steps below must be done in order.
+
+### For the impatient
+
+Do this once:
+
+``` bash
+cd oidc-swamid-federation
+create_fo_bundle.py
+cd MDSS
+./create_sign_seq.py
+cd ..
+for i in RP OP; do
+  cd $i
+  ./enrollment_setup.py
+  cd ..
+done
+cd MDSS
+./enroll.py RP OP
+```
+
+Run the daemons
+
+``` bash
+cd RP
+./rp.py -t -k conf &
+cd ../OP
+./server.py -t -k conf &
+cd ../MDSS
+./mdss.py -t config
+```
+
+
+Put this into cron (or run it regularly, at least once):
+``` bash
+./metadata_importer.py
+./processor.py
+./signing_service.py
+```
+
+Point your Web browser at 
+https://localhost:8080 and enter diana@localhost:8100 as you unique identifier and later diana/krall as username/password.
+
    
 ### Federation setup
 
