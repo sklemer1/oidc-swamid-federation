@@ -33,6 +33,7 @@ Using pip you do:
 
 ``` bash
 virtualenv -p python3 foobar
+pip install atomicwrites
 pip install git+https://github.com/openid/JWTConnect-Python-CryptoJWT.git@1eff9e5
 pip install git+https://github.com/openid/JWTConnect-Python-OidcMsg.git@2c6bddc
 pip install git+https://github.com/openid/JWTConnect-Python-OidcService.git@6bb00d6
@@ -90,6 +91,7 @@ cd ../MDSS
 
 Put this into cron (or run it regularly, at least once):
 ``` bash
+./create_sign_seq.py
 ./metadata_importer.py
 ./processor.py
 ./signing_service.py
